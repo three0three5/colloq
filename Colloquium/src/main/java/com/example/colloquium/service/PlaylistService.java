@@ -43,6 +43,8 @@ public class PlaylistService {
         if (songs.contains(song)) {
             return ResponseEntity.ok(null);
         }
+        song.setPlaylist(playlist);
+        song = songRepository.save(song);
         songs.add(song);
         playlist.setSongs(songs);
         playlist = playlistRepository.save(playlist);
