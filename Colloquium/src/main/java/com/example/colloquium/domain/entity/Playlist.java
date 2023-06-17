@@ -18,6 +18,6 @@ public class Playlist {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "playlist", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "playlist", fetch = FetchType.EAGER)
     List<Song> songs;
 }

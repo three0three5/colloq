@@ -28,7 +28,7 @@ public class Song {
     @Column(name = "rating")
     private Integer rating;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "playlist_id")
     private Playlist playlist;
 }
