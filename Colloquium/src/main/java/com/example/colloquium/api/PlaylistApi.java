@@ -1,5 +1,6 @@
 package com.example.colloquium.api;
 
+import com.example.colloquium.dto.request.PlaylistRequestDto;
 import com.example.colloquium.dto.request.SongRequestDto;
 import com.example.colloquium.dto.response.PlaylistResponseDto;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/playlists")
 public interface PlaylistApi {
     @PostMapping("/")
-    ResponseEntity<PlaylistResponseDto> createPlaylist();
+    ResponseEntity<PlaylistResponseDto> createPlaylist(@RequestBody PlaylistRequestDto playlistRequestDto);
 
     @PostMapping("/{id}/songs")
-    ResponseEntity<?> addSong(@PathVariable Long id, @RequestBody SongRequestDto songRequestDto);
+    ResponseEntity<PlaylistResponseDto> addSong(@PathVariable Long id,
+                                                @RequestBody SongRequestDto songRequestDto);
 }
