@@ -37,17 +37,11 @@ public class PlaylistService {
         if (optional.isEmpty() || optionalSong.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        Playlist playlist = optional.get();
+
         Song song = optionalSong.get();
-        List<Song> songs = playlist.getSongs();
-        if (songs.contains(song)) {
-            return ResponseEntity.ok(null);
-        }
-        song.setPlaylist(playlist);
-        song = songRepository.save(song);
-        songs.add(song);
-        playlist.setSongs(songs);
-        playlist = playlistRepository.save(playlist);
+        songRepository.save(song.setPlaylist(optional.get()));
+
+        Playlist playlist = playlistRepository.findById(id).get();
         return ResponseEntity.ok(PlaylistToPlaylistResponseDto(playlist));
     }
 
